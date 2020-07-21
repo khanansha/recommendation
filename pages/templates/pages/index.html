@@ -1,0 +1,100 @@
+{% extends 'pages/basic.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+
+<h1>Dining</h1>
+<div class="row my-2">
+    {% comment %} {{ cuisin.results.recommendation }} {% endcomment %}
+    {% for cuisin in cuisin.results.recommendation %}
+
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Rating{{cuisin.star}}</strong>
+                    <h3 class="mb-0">{{ cuisin.restaurant_name }}</h3>
+                    {% comment %} <div class="mb-1 text-muted">Nov 12</div> {% endcomment %}
+                    <p class="card-text mb-auto">{{cuisin.categories}}</p>
+                    {% comment %} <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a> {% endcomment %}
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{% static 'img/resto.jpg' %}" class="bd-placeholder-img" width="200" height="250"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                </div>
+            </div>
+        </div>
+{% if forloop.counter|divisibleby:2 %}
+    </div><div class="row my-2">
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+<div class="container">
+
+<h1>Travel</h1>
+<div class="row my-2">
+     {% comment %} {{ travel.results.recommendation }}  {% endcomment %}
+    {% for t in travel %}
+
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">Rating{{t.rating}}</strong>
+                    <h3 class="mb-0">{{ t.title }}</h3>
+                    {% comment %} <div class="mb-1 text-muted">Nov 12</div> {% endcomment %}
+                    <p class="card-text mb-auto">{{t.keywords}}</p>
+                    {% comment %} <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a> {% endcomment %}
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{% static 'img/trvl.jpg' %}" class="bd-placeholder-img" width="200" height="250"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                </div>
+            </div>
+        </div>
+{% if forloop.counter|divisibleby:2 %}
+    </div><div class="row my-2">
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+
+<div class="container">
+
+<h1>HOTEL</h1>
+<div class="row my-2">
+    {% comment %} {{ hotel.results.recommendation }}  {% endcomment %}
+    {% for hotel in hotel.results.recommendation %}
+
+        <div class="col-md-6">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">{{hotel.hotel_star_rating}}</strong>
+                    <h3 class="mb-0">{{ hotel.property_name }}</h3>
+                    {% comment %} <div class="mb-1 text-muted">Nov 12</div> {% endcomment %}
+                    <p class="card-text mb-auto">{{hotel.hotel_facilities}}</p>
+                    {% comment %} <a href="blogpost/{{item.post_id}}" class="stretched-link">Continue reading</a> {% endcomment %}
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{% static 'img/hotel.jpg' %}" class="bd-placeholder-img" width="200" height="250"
+                        aria-label="Placeholder: Thumbnail"/>
+
+                </div>
+            </div>
+        </div>
+{% if forloop.counter|divisibleby:2 %}
+    </div><div class="row my-2">
+    {% endif %}
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'pages/basic.html' %}
+{% load static %}
+
+{% block body %}
+<section id="register" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4>
+                <i class="fas fa-user-plus"></i> profile</h4>
+            </div>
+            <div class="card-body">
+            {% comment %} {% include 'partials/_alerts.html' %} {% endcomment %}
+               
+                <form action="{% url 'profile' %}" method="POST">
+                    {% csrf_token %}
+                <div class="form-group">
+                <label for="Cuisine">Cuisine</label><br><br>
+                
+                  <input type="checkbox" name="Cuisine[]" value="American"  /> American <br> 
+                  <input type="checkbox" name="Cuisine[]" value="Chinese" /> Chinese <br>
+                  <input type="checkbox" name="Cuisine[]" value="European" /> European<br>
+                  <input type="checkbox" name="Cuisine[]" value="Greek" /> Greek<br>
+                  <input type="checkbox" name="Cuisine[]" value="Indian" /> Indian<br>
+                  <input type="checkbox" name="Cuisine[]" value="Italian" /> Italian<br> 
+                </div>
+                <div class="form-group">
+                  <label for="Lifestyle">Lifestyle</label><br><br>
+                   <input type="checkbox" name="Lifestyle[]" value="Beauty & Spas" >Beauty & Spas<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Nightlife" > Nightlife<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Fashion"  >Fashion<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Airport Shuttles" >Airport Shuttles<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Car Rental" >Car Rental<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Airports" >Airports<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Boat Charters" >Boat Charters<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Private Jet Charter" >Private Jet Charter<br>
+                </div>
+                <div class="form-group">
+                  <label for="Travel">Travel</label><br><br>
+                  <input type="checkbox" name="Travel[]" value="Nature and Outdoors" /> Nature and Outdoors<br>
+                  <input type="checkbox" name="Travel[]" value="Family" /> Family<br>
+                  <input type="checkbox" name="Travel[]" value="Weekend Getaways" /> Weekend Getaways<br>
+                  <input type="checkbox" name="Travel[]" value="Desert Safari" /> Desert Safari<br>
+                  <input type="checkbox" name="Travel[]" value="Historical and Heritage"/> Historical and Heritage<br>
+                  {% comment %} <input type="checkbox" name="Cuisine" value="European" /> European {% endcomment %}
+                </div>
+                {% comment %} <label for="cars">Choose a car:</label>
+                <select type="checkbox" name="cars" id="cars" multiple>
+                <option type="checkbox" value="volvo">Volvo</option>
+                <option type="checkbox" value="saab">Saab</option>
+                <option type="checkbox" value="opel">Opel</option>
+                <option type="checkbox" value="audi">Audi</option>
+                </select> {% endcomment %}
+                <div class="form-group">
+                  <label for="Lifestyle">Hotel</label><br><br>
+                   <input type="checkbox" name="Hotel[]" value="Hotel Amenities" >Hotel Amenities<br>
+                  <input type="checkbox" name="Hotel[]" value="Business Services" >Business Services<br>
+                  <input type="checkbox" name="Hotel[]" value="No Category"  >No Category<br>
+                  <input type="checkbox" name="Hotel[]" value="Basic Room Amenities" > Basic Room Amenities<br>
+                  <input type="checkbox" name="Hotel[]" value="Personal Services" >Personal Services<br>
+                  <input type="checkbox" name="Hotel[]" value="Recreation" >Recreation<br>
+                <input type="checkbox" name="Hotel[]" value="Travel" >Travel<br>
+                <input type="checkbox" name="Hotel[]" value="Basics" >Basics<br>
+                </div>
+                <br>
+                <input type="submit" value="submit" class="btn btn-secondary btn-block">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}    
+<script>
+
+$(document).ready(function () {
+  $("#test").CreateMultiCheckBox({ width: '230px',
+             defaultText : 'Select Below', height:'250px' });
+});
+
+</script>
+{% block js %} 
+<script>
+
+$(document).ready(function () {
+  $("#test").CreateMultiCheckBox({ width: '230px',
+             defaultText : 'Select Below', height:'250px' });
+});
+</script>
+{% endblock %}

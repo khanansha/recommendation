@@ -1,0 +1,25 @@
+{% extends 'pages/basic.html' %}
+{% load static %}
+
+{% block body %}
+{% comment %} {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %} {% endcomment %}
+<br>
+<br>
+<h2>login:</h2>
+    <br>
+    <br>
+<form method="post" enctype="multipart/form-data" action="{% url 'login' %}">
+ {% csrf_token %}
+
+ <div class="col-md-4 col-sm-4"><label for="fname">Username:</label> </div> <input type="text" id="fname" name="username" required="required"><br><br>
+
+ <div class="col-md-4 col-sm-4"><label for="lname">Password:</label> </div> <input type="password" id="lname" name="password" required="required"><br><br>
+<input type="submit" value="Submit" >
+</form>
+{% endblock %}
