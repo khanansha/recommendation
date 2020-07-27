@@ -1,6 +1,6 @@
 {% extends 'pages/basic.html' %}
 {% load static %}
-
+{% load tag_library %}
 {% block body %}
 
 <!-- slider_area_start -->
@@ -230,18 +230,28 @@
                             <a href="destination_details.html"><h3>{{ cuisin.restaurant_name }}</h3></a>
                             <p>{{cuisin.categories}}</p>
                             <div class="rating_days d-flex justify-content-between">
-                                <span class="d-flex justify-content-center align-items-center">
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
+                                <span class="d-flex justify-content-center align-items-center">                      
+                                    <i class="fa fa-star{% if cuisin.star|to_int < 1 %}-o empty{% endif %}">
+                                    </i> 
+                                    <i class="fa fa-star{% if cuisin.star|to_int < 2 %}-o empty{% endif %}">
+                                    </i>
+                                    <i class="fa fa-star{% if cuisin.star|to_int < 3 %}-o empty{% endif %}">
+                                    </i>
+                                    <i class="fa fa-star{% if cuisin.star|to_int < 4 %}-o empty{% endif %}">
+                                    </i>
+                                    <i class="fa fa-star{% if cuisin.star|to_int < 5 %}-o empty{% endif %}">
+                                    </i>  
+
+                                     {% comment %} <i class="fa fa-star"></i> 
                                      <i class="fa fa-star"></i> 
                                      <i class="fa fa-star"></i> 
                                      <i class="fa fa-star"></i>
-                                     <a href="#">{{cuisin.star}}</a>
+                                     <a href="#">{{cuisin.star}}</a> {% endcomment %}
                                 </span>
-                                <div class="days">
+                                {% comment %} <div class="days">
                                     <i class="fa fa-clock-o"></i>
-                                    <a href="#">5 Days</a>
-                                </div>
+                                     <a href="#">5 Days</a> 
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -277,17 +287,17 @@
                             <p>{{t.keywords}}</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i>
-                                     <a href="#">{{t.rating}}</a>
+                                     <i class="fa fa-star{% if t.rating|to_int < 1 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if t.rating|to_int < 2 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if t.rating|to_int < 3 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if t.rating|to_int < 4 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if t.rating|to_int < 5 %}-o empty{% endif %}"></i>
+                                     {% comment %} <a href="#">{{t.rating}}</a> {% endcomment %}
                                 </span>
-                                <div class="days">
+                                {% comment %} <div class="days">
                                     <i class="fa fa-clock-o"></i>
-                                    <a href="#">5 Days</a>
-                                </div>
+                                     <a href="#">5 Days</a> 
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -300,7 +310,7 @@
                 {% endfor %}
             </div>
         </div> 
-         <div class="container">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section_title text-center mb_70">
@@ -323,17 +333,17 @@
                             <p>{{l.categories}}</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i>
-                                     <a href="#">{{l.star}}</a>
+                                     <i class="fa fa-star{% if l.star|to_int < 1 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if l.star|to_int < 2 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if l.star|to_int < 3 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if l.star|to_int < 4 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if l.star|to_int < 5 %}-o empty{% endif %}"></i>
+                                     {% comment %} <a href="#">{{l.star}}</a> {% endcomment %}
                                 </span>
-                                <div class="days">
+                                {% comment %} <div class="days">
                                     <i class="fa fa-clock-o"></i>
-                                    <a href="#">5 Days</a>
-                                </div>
+                                    <a href="#">5 Days</a> 
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>
@@ -368,17 +378,17 @@
                             <p>{{h.hotel_facilities}}</p>
                             <div class="rating_days d-flex justify-content-between">
                                 <span class="d-flex justify-content-center align-items-center">
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i> 
-                                     <i class="fa fa-star"></i>
-                                     <a href="#">{{h.hotel_star_rating}}</a>
+                                     <i class="fa fa-star{% if h.hotel_star_rating|to_int < 1 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if h.hotel_star_rating|to_int < 2 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if h.hotel_star_rating|to_int < 3 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if h.hotel_star_rating|to_int < 4 %}-o empty{% endif %}"></i> 
+                                     <i class="fa fa-star{% if h.hotel_star_rating|to_int < 5 %}-o empty{% endif %}"></i>
+                                     {% comment %} <a href="#">{{h.hotel_star_rating}}</a> {% endcomment %}
                                 </span>
-                                <div class="days">
+                                {% comment %} <div class="days">
                                     <i class="fa fa-clock-o"></i>
-                                    <a href="#">5 Days</a>
-                                </div>
+                                    <a href="#">5 Days</a> 
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>

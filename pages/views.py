@@ -139,6 +139,8 @@ def recom(request):
     cuisin = requests.post(url, headers=headers, data=json.dumps(payload))
     # return JsonResponse(list(cuisin.values()), safe=False)
     cuisin = cuisin.json()
+    rating = cuisin['results']['recommendation'][0]
+    print(rating)
 
     # HOTEL
 
@@ -162,6 +164,8 @@ def recom(request):
             hotelurl, headers=headers, data=json.dumps(payloads))
         x = hotelresponsee.json()
         hotel_res = hotel_res + x['results']['recommendation']
+        rat = hotel_res[3]
+        print(rat)
     # print(hotel_res)
 
     # TRAVEL
@@ -192,7 +196,7 @@ def recom(request):
     # lifestyle
     with open('C:/Users/akhan.extern/Desktop/jsondata/lifestyle_category.json', encoding="ISO-8859-1") as life:
         lifesyl_dict = json.load(life)
-        print(lifesyl_dict)
+       # print(lifesyl_dict)
     lifesurl = "http://15.206.252.9:5000/api/v1.0/lifestyle"
     life = u[0].Lifestyle
     lifestyle_res = []
