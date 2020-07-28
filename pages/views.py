@@ -129,7 +129,7 @@ def recom(request):
     # s = cuisin.replace(',', '')
     c = " ".join(str(cuisin).split(','))
     print(c)
-    url = "http://15.206.252.9:5000/api/v1.0/dining"
+    url = "http://3.6.245.232:5000/api/v1.0/dining"
 
     payload = {'preference': c}
 
@@ -147,7 +147,7 @@ def recom(request):
     with open('C:/Users/akhan.extern/Desktop/jsondata/hotel_category.json', encoding="ISO-8859-1") as h:
         hotel_dict = json.load(h)
 
-    hotelurl = "http://15.206.252.9:5000/api/v1.0/hotel"
+    hotelurl = "http://3.6.245.232:5000/api/v1.0/hotel"
 
     Lifestyle = u[0].Hotel
     hotel_res = []
@@ -173,7 +173,7 @@ def recom(request):
     with open('C:/Users/akhan.extern/Desktop/jsondata/attraction_category_modified.json') as f:
         attraction_dict = json.load(f)
 
-    attrurl = "http://15.206.252.9:5000/api/v1.0/attraction"
+    attrurl = "http://3.6.245.232:5000/api/v1.0/attraction"
 
     travel = u[0].Travel
     attract_res = []
@@ -197,7 +197,7 @@ def recom(request):
     with open('C:/Users/akhan.extern/Desktop/jsondata/lifestyle_category.json', encoding="ISO-8859-1") as life:
         lifesyl_dict = json.load(life)
        # print(lifesyl_dict)
-    lifesurl = "http://15.206.252.9:5000/api/v1.0/lifestyle"
+    lifesurl = "http://3.6.245.232:5000/api/v1.0/lifestyle"
     life = u[0].Lifestyle
     lifestyle_res = []
     for row in str(life).split(','):
