@@ -144,7 +144,7 @@ def recom(request):
 
     # HOTEL
 
-    with open('C:/Users/akhan.extern/Desktop/jsondata/hotel_category.json', encoding="ISO-8859-1") as h:
+    with open('./data/hotel_category.json', encoding="ISO-8859-1") as h:
         hotel_dict = json.load(h)
 
     hotelurl = "http://3.6.245.232:5000/api/v1.0/hotel"
@@ -170,7 +170,7 @@ def recom(request):
 
     # TRAVEL
 
-    with open('C:/Users/akhan.extern/Desktop/jsondata/attraction_category_modified.json') as f:
+    with open('./data/attraction_category_modified.json') as f:
         attraction_dict = json.load(f)
 
     attrurl = "http://3.6.245.232:5000/api/v1.0/attraction"
@@ -194,7 +194,7 @@ def recom(request):
     # print(attract_res)
 
     # lifestyle
-    with open('C:/Users/akhan.extern/Desktop/jsondata/lifestyle_category.json', encoding="ISO-8859-1") as life:
+    with open('./data/lifestyle_category.json', encoding="ISO-8859-1") as life:
         lifesyl_dict = json.load(life)
        # print(lifesyl_dict)
     lifesurl = "http://3.6.245.232:5000/api/v1.0/lifestyle"
