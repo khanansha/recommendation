@@ -118,13 +118,16 @@ def profile(request):
             Cuisine=c, Lifestyle=l, Travel=t, Hotel=h)
         return redirect('recom')
     else:
-        return render(request, 'pages/profile.html')
+        profile = UserProfile.objects.filter(user_id=request.user.id)
+        v = ['Hotel', 'Travel', 'cuisine', 'lifestyle']
+        return render(request, 'pages/profile.html', {'profile': profile})
 
 
 def recom(request):
     u = UserProfile.objects.filter(user_id=request.user.id)
     print(u)
     cuisin = u[0].Cuisine
+
     print(cuisin)
     # s = cuisin.replace(',', '')
     c = " ".join(str(cuisin).split(','))
@@ -139,36 +142,50 @@ def recom(request):
     cuisin = requests.post(url, headers=headers, data=json.dumps(payload))
     # return JsonResponse(list(cuisin.values()), safe=False)
     cuisin = cuisin.json()
-    rating = cuisin['results']['recommendation'][0]
-    print(rating)
+    #rating = cuisin['results']['recommendation'][0]
+    # print(rating)
 
     # HOTEL
+    Lifestyle = u[0].Hotel
+    travel = u[0].Travel
+    life = u[0].Lifestyle
+    print('test1:', Lifestyle)
+    print('test2:', travel)
+    print('test3:', life)
 
+    # if Lifestyle != None:
     with open('./data/hotel_category.json', encoding="ISO-8859-1") as h:
         hotel_dict = json.load(h)
 
     hotelurl = "http://3.6.245.232:5000/api/v1.0/hotel"
 
     Lifestyle = u[0].Hotel
+    # if Lifestyle != None:
     hotel_res = []
-    for row in str(Lifestyle).split(','):
-        cat = row.strip()
+    if Lifestyle:
 
-        cat_title = random.choice(hotel_dict[cat])
+        for row in str(Lifestyle).split(','):
+            cat = row.strip()
 
-        payloads = {'preference': cat_title}
-        headers = {'Content-Type': 'application/json'}
+            cat_title = random.choice(hotel_dict[cat])
+        # print(cat_title)
+            payloads = {'preference': cat_title}
+            headers = {'Content-Type': 'application/json'}
 
         # print(json.dumps(payloads))
-        hotelresponsee = requests.post(
-            hotelurl, headers=headers, data=json.dumps(payloads))
-        x = hotelresponsee.json()
-        hotel_res = hotel_res + x['results']['recommendation']
-        rat = hotel_res[3]
-        print(rat)
+            hotelresponsee = requests.post(
+                hotelurl, headers=headers, data=json.dumps(payloads))
+            x = hotelresponsee.json()
+            hotel_res = hotel_res + x['results']['recommendation']
+        # rat = hotel_res[3]
+        # print(rat)
     # print(hotel_res)
 
     # TRAVEL
+    # travel = u[0].Travel
+    # print('test2:', travel)
+
+    # if travel is not None:
 
     with open('./data/attraction_category_modified.json') as f:
         attraction_dict = json.load(f)
@@ -177,42 +194,48 @@ def recom(request):
 
     travel = u[0].Travel
     attract_res = []
-    for row in str(travel).split(','):
-        attraction = row.strip()
+    if travel:
 
-        attraction_title = random.choice(attraction_dict[attraction])
+        for row in str(travel).split(','):
+            attraction = row.strip()
 
-        payloads = {'preference': attraction_title}
-        headers = {'Content-Type': 'application/json'}
+            attraction_title = random.choice(attraction_dict[attraction])
+
+            payloads = {'preference': attraction_title}
+            headers = {'Content-Type': 'application/json'}
 
         # print(json.dumps(payloads))
-        travlresponsee = requests.post(
-            attrurl, headers=headers, data=json.dumps(payloads))
-        x = travlresponsee.json()
-        attract_res = attract_res + x['results']['recommendation']
+            travlresponsee = requests.post(
+                attrurl, headers=headers, data=json.dumps(payloads))
+            x = travlresponsee.json()
+            attract_res = attract_res + x['results']['recommendation']
      # return HttpResponse(attract_res)
     # print(attract_res)
+    # life = u[0].Lifestyle
+    # print('test3:', life)
+    # if life is not None:
 
-    # lifestyle
+        # lifestyle
     with open('./data/lifestyle_category.json', encoding="ISO-8859-1") as life:
         lifesyl_dict = json.load(life)
        # print(lifesyl_dict)
     lifesurl = "http://3.6.245.232:5000/api/v1.0/lifestyle"
     life = u[0].Lifestyle
     lifestyle_res = []
-    for row in str(life).split(','):
-        lifestyle = row.strip()
+    if life:
+        for row in str(life).split(','):
+            lifestyle = row.strip()
 
-        lifesyl_title = random.choice(lifesyl_dict[lifestyle])
+            lifesyl_title = random.choice(lifesyl_dict[lifestyle])
 
-        payloads = {'preference': lifesyl_title}
-        headers = {'Content-Type': 'application/json'}
+            payloads = {'preference': lifesyl_title}
+            headers = {'Content-Type': 'application/json'}
 
         # print(json.dumps(payloads))
-        liferesponsee = requests.post(
-            lifesurl, headers=headers, data=json.dumps(payloads))
-        x = liferesponsee.json()
-        lifestyle_res = lifestyle_res + x['results']['recommendation']
+            liferesponsee = requests.post(
+                lifesurl, headers=headers, data=json.dumps(payloads))
+            x = liferesponsee.json()
+            lifestyle_res = lifestyle_res + x['results']['recommendation']
        # return HttpResponse(lifestyle_res)
     # print(lifestyle_res)
 

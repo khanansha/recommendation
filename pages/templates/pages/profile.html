@@ -12,62 +12,59 @@
                 <i class="fas fa-user-plus"></i> profile</h4>
             </div>
             <div class="card-body">
-            {% comment %} {% include 'partials/_alerts.html' %} {% endcomment %}
+                {% for profile in profile %}
+
+              {% comment %} {% include 'partials/_alerts.html' %} {% endcomment %}
                
                 <form action="{% url 'profile' %}" method="POST">
                     {% csrf_token %}
                 <div class="form-group">
                 <label for="Cuisine">Cuisine</label><br><br>
-                
-                  <input type="checkbox" name="Cuisine[]" value="American"  /> American <br> 
-                  <input type="checkbox" name="Cuisine[]" value="Chinese" /> Chinese <br>
-                  <input type="checkbox" name="Cuisine[]" value="European" /> European<br>
-                  <input type="checkbox" name="Cuisine[]" value="Greek" /> Greek<br>
-                  <input type="checkbox" name="Cuisine[]" value="Indian" /> Indian<br>
-                  <input type="checkbox" name="Cuisine[]" value="Italian" /> Italian<br> 
+                {% comment %} <input type="hiden" value="0" name="cuisine_recommendation" > {% endcomment %}
+                  <input type="checkbox" name="Cuisine[]" value="American"{% if 'American' in profile.Cuisine %} checked="checked" {% endif %}/> American <br> 
+                  <input type="checkbox" name="Cuisine[]" value="Chinese"{% if 'Chinese' in profile.Cuisine %} checked="checked" {% endif %} /> Chinese <br>
+                  <input type="checkbox" name="Cuisine[]" value="European" {% if 'European' in profile.Cuisine %} checked="checked" {% endif %}/> European<br>
+                  <input type="checkbox" name="Cuisine[]" value="Greek" {% if 'Greek' in profile.Cuisine %} checked="checked" {% endif %}/> Greek<br>
+                  <input type="checkbox" name="Cuisine[]" value="Indian" {% if 'Indian' in profile.Cuisine %} checked="checked" {% endif %}/> Indian<br>
+                  <input type="checkbox" name="Cuisine[]" value="Italian" {% if 'Italian' in profile.Cuisine %} checked="checked" {% endif %}/> Italian<br> 
                 </div>
                 <div class="form-group">
                   <label for="Lifestyle">Lifestyle</label><br><br>
-                   <input type="checkbox" name="Lifestyle[]" value="Beauty & Spas" >Beauty & Spas<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Nightlife" > Nightlife<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Fashion"  >Fashion<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Airport Shuttles" >Airport Shuttles<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Car Rental" >Car Rental<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Airports" >Airports<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Boat Charters" >Boat Charters<br>
-                  <input type="checkbox" name="Lifestyle[]" value="Private Jet Charter" >Private Jet Charter<br>
+                   <input type="checkbox" name="Lifestyle[]" value="Beauty & Spas" {% if 'Beauty & Spas' in profile.Lifestyle %} checked="checked" {% endif %} >Beauty & Spas<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Nightlife"{% if 'Nightlife' in profile.Lifestyle %} checked="checked" {% endif %} > Nightlife<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Fashion"{% if 'Fashion' in profile.Lifestyle %} checked="checked" {% endif %} >Fashion<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Airport Shuttles"{% if 'Airport Shuttles' in profile.Lifestyle %} checked="checked" {% endif %} >Airport Shuttles<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Car Rental"{% if 'Car Rental' in profile.Lifestyle %} checked="checked" {% endif %} >Car Rental<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Airports"{% if 'Airports' in profile.Lifestyle %} checked="checked" {% endif %} >Airports<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Boat Charters"{% if 'Boat Charters' in profile.Lifestyle %} checked="checked" {% endif %} >Boat Charters<br>
+                  <input type="checkbox" name="Lifestyle[]" value="Private Jet Charter"{% if 'Private Jet Charter' in profile.Lifestyle %} checked="checked" {% endif %} >Private Jet Charter<br>
                 </div>
                 <div class="form-group">
                   <label for="Travel">Travel</label><br><br>
-                  <input type="checkbox" name="Travel[]" value="Nature and Outdoors" /> Nature and Outdoors<br>
-                  <input type="checkbox" name="Travel[]" value="Family" /> Family<br>
-                  <input type="checkbox" name="Travel[]" value="Weekend Getaways" /> Weekend Getaways<br>
-                  <input type="checkbox" name="Travel[]" value="Desert Safari" /> Desert Safari<br>
-                  <input type="checkbox" name="Travel[]" value="Historical and Heritage"/> Historical and Heritage<br>
+                  <input type="checkbox" name="Travel[]" value="Nature & Outdoors" {% if 'Nature & Outdoors' in profile.Travel %} checked="checked" {% endif %}/> Nature and Outdoors<br>
+                  <input type="checkbox" name="Travel[]" value="Family"{% if 'Family' in profile.Travel %} checked="checked" {% endif %} /> Family<br>
+                  <input type="checkbox" name="Travel[]" value="Weekend Getaways"{% if 'Weekend Getaways' in profile.Travel %} checked="checked" {% endif %} /> Weekend Getaways<br>
+                  <input type="checkbox" name="Travel[]" value="Desert Safari"{% if 'Desert Safari' in profile.Travel %} checked="checked" {% endif %} /> Desert Safari<br>
+                  <input type="checkbox" name="Travel[]" value="Historical & Heritage" {% if 'Historical & Heritage' in profile.Travel %} checked="checked" {% endif %} /> Historical and Heritage<br>
                   {% comment %} <input type="checkbox" name="Cuisine" value="European" /> European {% endcomment %}
                 </div>
-                {% comment %} <label for="cars">Choose a car:</label>
-                <select type="checkbox" name="cars" id="cars" multiple>
-                <option type="checkbox" value="volvo">Volvo</option>
-                <option type="checkbox" value="saab">Saab</option>
-                <option type="checkbox" value="opel">Opel</option>
-                <option type="checkbox" value="audi">Audi</option>
-                </select> {% endcomment %}
+            
                 <div class="form-group">
-                  <label for="Lifestyle">Hotel</label><br><br>
-                   <input type="checkbox" name="Hotel[]" value="Hotel Amenities" >Hotel Amenities<br>
-                  <input type="checkbox" name="Hotel[]" value="Business Services" >Business Services<br>
-                  <input type="checkbox" name="Hotel[]" value="No Category"  >No Category<br>
-                  <input type="checkbox" name="Hotel[]" value="Basic Room Amenities" > Basic Room Amenities<br>
-                  <input type="checkbox" name="Hotel[]" value="Personal Services" >Personal Services<br>
-                  <input type="checkbox" name="Hotel[]" value="Recreation" >Recreation<br>
-                <input type="checkbox" name="Hotel[]" value="Travel" >Travel<br>
-                <input type="checkbox" name="Hotel[]" value="Basics" >Basics<br>
+                  <label for="Hotel">Hotel</label><br><br>
+                   <input type="checkbox" name="Hotel[]" value="Hotel Amenities" {% if 'Hotel Amenities' in profile.Hotel %} checked="checked" {% endif %}>Hotel Amenities<br>
+                  <input type="checkbox" name="Hotel[]" value="Business Services"{% if 'Business Services' in profile.Hotel %} checked="checked" {% endif %} >Business Services<br>
+                  <input type="checkbox" name="Hotel[]" value="No Category" {% if 'No Category' in profile.Hotel %} checked="checked" {% endif %} >No Category<br>
+                  <input type="checkbox" name="Hotel[]" value="Basic Room Amenities" {% if 'Basic Room Amenities' in profile.Hotel %} checked="checked" {% endif %} > Basic Room Amenities<br>
+                  <input type="checkbox" name="Hotel[]" value="Personal Services"{% if 'Personal Services' in profile.Hotel%} checked="checked" {% endif %} >Personal Services<br>
+                  <input type="checkbox" name="Hotel[]" value="Recreation"{% if 'Recreation' in profile.Hotel %} checked="checked" {% endif %} >Recreation<br>
+                <input type="checkbox" name="Hotel[]" value="Travel" {% if 'Travel' in profile.Hotel %} checked="checked" {% endif %}>Travel<br>
+                <input type="checkbox" name="Hotel[]" value="Basics" {% if 'Basics' in profile.Hotel %} checked="checked" {% endif %}>Basics<br>
                 </div>
                 <br>
                 <input type="submit" value="submit" class="btn btn-secondary btn-block">
               </form>
             </div>
+            {% endfor %}
           </div>
         </div>
       </div>
