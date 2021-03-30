@@ -101,7 +101,7 @@ protobuf==3.12.1
 public==2019.4.13
 pycodestyle==2.5.0
 pycryptodome==3.9.7
-Pygments==2.6.1
+Pygments==2.7.4
 pylint==2.4.4
 pylint-django==2.0.14
 pylint-plugin-utils==0.6
