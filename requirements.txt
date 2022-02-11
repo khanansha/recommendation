@@ -97,7 +97,7 @@ payu-biz==2.0
 Pillow==7.0.0
 post==2019.4.13
 progressbar2==3.47.0
-protobuf==3.12.1
+protobuf==3.15.0
 public==2019.4.13
 pycodestyle==2.5.0
 pycryptodome==3.9.7
