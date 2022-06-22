@@ -87,7 +87,7 @@ matplotlib==3.2.2
 mccabe==0.6.1
 mysql-connector==2.2.9
 mysqlclient==1.4.6
-numpy==1.18.1
+numpy==1.22.0
 odfpy==1.4.1
 openpyxl==3.0.3
 opt-einsum==3.2.1
